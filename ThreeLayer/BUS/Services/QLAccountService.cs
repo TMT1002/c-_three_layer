@@ -21,10 +21,11 @@ namespace BUS.Services
         {
             return _accountService.GetAll();
         }
-        //public string GetAllAccount()
-        //{
-        //    return _accountService.GetAll();
-        //}
+            
+        public void CreateAccount(Account newAccount)
+        {
+            _accountService.Create(newAccount);
+        }
 
     }
 

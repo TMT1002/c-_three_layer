@@ -19,9 +19,19 @@ public class AccountController : Controller
     {
         return _QLAccountService.GetAllAccount();
     }
-    //public string GetAllAccount()
-    //{
-    //    return _QLAccountService.GetAllAccount();
-    //}
+
+    [HttpPost]
+    public IActionResult CreateAccount(Account newAccount)
+    {
+        try
+        {
+            _QLAccountService.CreateAccount(newAccount);
+            return Ok();
+        }
+        catch (Exception ex) {
+            return BadRequest(ex.Message);
+        }
+        
+    }
 }
 

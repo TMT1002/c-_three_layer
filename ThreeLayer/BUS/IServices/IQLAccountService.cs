@@ -10,6 +10,6 @@ namespace BUS.IServices
     public interface IQLAccountService
     {
         List<Account> GetAllAccount();
-        //string GetAllAccount();
+        void CreateAccount(Account newAccount);
     }
 }

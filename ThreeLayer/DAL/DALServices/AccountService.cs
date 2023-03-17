@@ -15,17 +15,16 @@ namespace DAL.DALServices
         {
             _context = context;
         }
-
-        //public AccountService(){}
-
         public List<Account> GetAll()
         {
             var account = _context.Accounts.ToList();
             return account;
         }
-        //public string GetAll()
-        //{
-        //    return "huhu";
-        //}
+
+        public void Create(Account account)
+        {
+            _context.Accounts.Add(account);
+            _context.SaveChanges();
+        }
     }
 }

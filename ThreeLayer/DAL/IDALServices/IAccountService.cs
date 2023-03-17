@@ -10,6 +10,6 @@ namespace DAL.IDALServices
     public interface IAccountService
     {
         List<Account> GetAll();
-        //string GetAll();
+        void Create(Account account);
     }
 }
