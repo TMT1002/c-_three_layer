@@ -9,8 +9,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DAL.Migrations
 {
-    [DbContext(typeof(AccountContext))]
-    partial class AccountContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(AccountDataContext))]
+    partial class AccountDataContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -40,6 +40,44 @@ namespace DAL.Migrations
                     b.HasKey("id");
 
                     b.ToTable("Accounts");
+                });
+
+            modelBuilder.Entity("DAL.Entities.Device", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
+
+                    b.Property<int>("AccountId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("nameDevice")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("AccountId");
+
+                    b.ToTable("Devices");
+                });
+
+            modelBuilder.Entity("DAL.Entities.Device", b =>
+                {
+                    b.HasOne("DAL.Entities.Account", "Account")
+                        .WithMany("devices")
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Account");
+                });
+
+            modelBuilder.Entity("DAL.Entities.Account", b =>
+                {
+                    b.Navigation("devices");
                 });
 #pragma warning restore 612, 618
         }

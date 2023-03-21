@@ -10,9 +10,9 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DAL.Migrations
 {
-    [DbContext(typeof(AccountContext))]
-    [Migration("20230317015153_InitialDatabase")]
-    partial class InitialDatabase
+    [DbContext(typeof(AccountDataContext))]
+    [Migration("20230321160105_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -43,6 +43,23 @@ namespace DAL.Migrations
                     b.HasKey("id");
 
                     b.ToTable("Accounts");
+                });
+
+            modelBuilder.Entity("DAL.Entities.Device", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
+
+                    b.Property<string>("nameDevice")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Devices");
                 });
 #pragma warning restore 612, 618
         }

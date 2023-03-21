@@ -4,13 +4,15 @@ using DAL;
 using DAL.DALServices;
 using DAL.IDALServices;
 using Microsoft.EntityFrameworkCore;
+using Web.Controllers;
+using Web.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddControllers();
-builder.Services.AddDbContext<AccountContext>(
+builder.Services.AddDbContext<AccountDataContext>(
     o => o.UseNpgsql(builder.Configuration.GetConnectionString("DB1"))
     );
 builder.Services.AddScoped<IQLAccountService, QLAccountService>();
@@ -38,6 +40,8 @@ app.UseRouting();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseMiddleware<testMiddleware>();
 
 app.MapControllers();
 

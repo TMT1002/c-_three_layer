@@ -20,4 +20,9 @@
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="IDALServices\" />
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

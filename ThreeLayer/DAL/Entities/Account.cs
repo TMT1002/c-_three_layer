@@ -9,10 +9,12 @@ namespace DAL.Entities
 {
     public class Account
     {
+        [Key]
         public int id {  get; set; }
         [Required]
         public string name { get; set; }
         [Required]
         public string email { get; set; }
+        public ICollection<Device> devices { get; set; }
     }
 }

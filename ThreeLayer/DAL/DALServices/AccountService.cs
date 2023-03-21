@@ -1,5 +1,6 @@
 ﻿using DAL.Entities;
 using DAL.IDALServices;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,8 +11,8 @@ namespace DAL.DALServices
 {
     public class AccountService : IAccountService
     {
-        private readonly AccountContext _context;
-        public AccountService(AccountContext context)
+        private readonly AccountDataContext _context;
+        public AccountService(AccountDataContext context)
         {
             _context = context;
         }
